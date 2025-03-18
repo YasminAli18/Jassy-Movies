@@ -1,0 +1,95 @@
+.movie-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #111;
+    color: white;
+    padding: 20px;
+}
+h1,span{
+    color:#b1456d;
+}
+
+.movie-card {
+    display: flex;
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+}
+
+.movie-image img {
+    width: 250px;
+    border-radius: 10px;
+}
+
+.movie-info {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.movie-info h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.movie-info p {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.loading-text {
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pagination-buttons {
+    gap:12px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.pagination button:disabled {
+    background-color: #444;
+    cursor: not-allowed;
+}
+.btn{
+    color:#b1456d;
+    
+}
+.btn:hover {
+    background-color: #8e2f54;
+    transform: scale(1.05);
+}
+.Bbtn{
+    background-color: #000000;
+    color: #b1456d;
+    border-radius: 25px;
+    width: 100px;
+    padding: 10px 16px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+margin-left: 350px;
+}
+.Bbtn:hover {
+    background-color: #8e2f54;
+    color: rgb(255, 247, 247);
+    transform: scale(1.05);
+  }
+

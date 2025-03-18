@@ -1,0 +1,72 @@
+
+.movies-container {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.929), rgba(3, 3, 3, 0.792));
+    min-height: 100vh;
+    padding: 20px;
+    gap:4px
+}
+
+
+.card {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); 
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-title,h2{
+    color:  #b1456d;
+    font-weight: 700;
+}
+
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+
+.custom-btn {
+    border-radius: 25px;
+    padding: 10px 16px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.custom-btn:hover {
+    background-color: #b1456d; 
+    transform: scale(1.05);
+}
+
+.custom-btn.active {
+    background-color:#b1456d ; 
+    transform: scale(1.1);
+}
+.custom-btn.active i {
+    color: rgb(0, 0, 0) !important; 
+}
+
+.search-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.search-input {
+background-color: rgba(0, 0, 0, 0.929);
+    width: 50%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 2px solid #b1456d;
+    outline: none;
+    transition: 0.3s;
+    color: aliceblue;
+}
+
+.search-input:focus {
+    border-color:#b1456d;
+    box-shadow: 0 0 8px #b1456d;
+}
+
