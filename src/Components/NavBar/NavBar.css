@@ -57,3 +57,30 @@
 list-style: none;
 
 }
+
+.btn {
+    font-weight: bold;
+    color: white;
+    border: none;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    position: relative; /* عشان الخط يظهر تحت الزر */
+    text-decoration: none; /* يمنع أي خطوط افتراضية */
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    width: 0;
+    height: 3px;
+    background-color: #d63384; 
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.btn:hover::after {
+    width: 100%;
+    left: 0;
+}
+

@@ -3,30 +3,35 @@ import './App.css'
 import { Provider } from "react-redux";
 import store from "./Store/store";
 import Login from './Pages/Login/Login'
+import Register from './Pages/Register/Register'
 import Movies from './Pages/Movies/Movies'
 import FavMovies from './Pages/Movies/FavMovies'
-import NavBar from './Components/NavBar/NavBar'
+// import NavBar from './Components/NavBar/NavBar'
 import Home from './Pages/Home/Home'
-import Footer from './Components/Footer/Footer'
+// import Footer from './Components/Footer/Footer'
 import MovieDetails from './Pages/Movies/MovieDetails'
 import Main from './Components/Main/main'
+import ProtectedRoute from './Pages/Protected/Protected';
  const route= createBrowserRouter([
   {path:'/',element:<Main/>,children:[ 
     { path:'/', element:<Home/>},
-    { path:'/movies', element:<Movies/>},
+    { path:'/movies', element:<ProtectedRoute><Movies/></ProtectedRoute>},
     {path:'/favmovies' ,element:<FavMovies/>},
     {path:'/movie/:id' ,element:<MovieDetails/>},
-     {path:'/login', element:<Login/>}
+     {path:'/login', element:<Login/>},
+     {path:'/signup', element:<Register/>},  
 ]},
 ])
 function App() {
 
   return (
     <>
+
 <Provider store={store}>
     
 <RouterProvider router={route}></RouterProvider>
     </Provider>
+  
       {/* <Login/>
       <BrowserRouter>
         <NavBar/>

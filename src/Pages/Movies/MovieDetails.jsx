@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./MovieDetails.css";
+import instance from "../../AxiosInstance/instance";
 
 function MovieDetails() {
     const { id } = useParams(); 
@@ -11,19 +12,19 @@ function MovieDetails() {
     const [currentIndex, setCurrentIndex] = useState(-1); 
 
     useEffect(() => {
-        axios.get("https://api.themoviedb.org/3/movie/popular?api_key=c94b800b13b9b455a5d91c9b54e821a3")
-            .then((res) => {
-                setMovies(res.data.results);
-
-                const foundIndex = res.data.results.findIndex(movie => movie.id.toString() === id);
-                if (foundIndex !== -1) {
-                    setCurrentMovie(res.data.results[foundIndex]);
-                    setCurrentIndex(foundIndex);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        instance
+        .get()
+        .then((res) => {
+            setMovies(res.data.results);
+            const foundIndex = res.data.results.findIndex(movie => movie.id.toString() === id);
+            if (foundIndex !== -1) {
+                setCurrentMovie(res.data.results[foundIndex]);
+                setCurrentIndex(foundIndex);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }, [id]); 
 
     const handlePagination = (newIndex) => {

@@ -2,6 +2,7 @@ import React from "react";
 import './Login.css'
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { userLogin } from "../../services/Auth"; 
 
 function Login(){
 const nav=useNavigate()
@@ -11,9 +12,21 @@ const nav=useNavigate()
         formState:{errors}
         }=useForm()
 
-    const onSubmit =(data)=>{
-        console.log(data);
-        nav('/Movies');
+    const onSubmit = async (data)=>{
+            //day6
+        try {
+            const user = await userLogin(data.email, data.password);
+            // localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("Token",JSON.stringify(user.access_token) );
+            alert("Login successfully!");
+            nav('/movies');
+          } catch (error) {
+            console.error("Login error:", error.code, error.message);
+            alert("Login failed: " + error.message);
+          }
+          //Day3
+        // console.log(data);
+        // nav('/Movies');
         
     }  
         
@@ -45,7 +58,7 @@ const nav=useNavigate()
                         className="form-control" 
                         id="password"
                         placeholder="Enter your password"
-                        {...register("pass", {
+                        {...register("password", {
                             required: "Password is required",
                             minLength: {
                             value: 8,
@@ -53,9 +66,12 @@ const nav=useNavigate()
                             }
                         })}
                     />
-                    {errors.pass && <p className="text-danger">{errors.pass.message} </p>}
+                    {errors.password && <p className="text-danger">{errors.password.message} </p>}
                 </div>
-                <button type="submit" className="btn-custom">Login</button>
+                <button type="submit" className="btn-custom my-2">Login</button>
+                        {/* day6 */}
+                <button type="button" className="btn-custom" onClick={()=>nav("/signup")}>Sign up</button>
+
 
             </form>
             <p className="text-center mt-3">

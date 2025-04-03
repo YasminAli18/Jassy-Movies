@@ -1,4 +1,3 @@
-// store/slices/FavMovies.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const favMoviesSlice = createSlice({
@@ -16,8 +15,6 @@ const favMoviesSlice = createSlice({
             } else {
                 state.favourites = [...state.favourites, movie]
             }
-        
-            // console.log("Updated Favorites:", JSON.parse(JSON.stringify(state.favourites))); 
         },
     },
 });

@@ -38,6 +38,8 @@
 .custom-btn:hover {
     background-color: #b1456d; 
     transform: scale(1.05);
+    /* color: rgb(0, 0, 0) !important; */
+
 }
 
 .custom-btn.active {

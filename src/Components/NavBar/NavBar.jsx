@@ -1,10 +1,37 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../services/firebase";
 import './NavBar.css';
 
 function NavBar() {
+
+    //DAY6
+
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe(); 
+    }, []);
+
+    const signOutHandler = async () => {    
+        try {
+            await signOut(auth);
+            alert("Sign out successfully!");
+            navigate("/login"); 
+        } catch (error) {
+            console.error("Sign out error:", error.code, error.message);
+            alert("Sign out failed: " + error.message);
+        }
+    };
+
     const favouriteMovies = useSelector((state) => state.favMovies.favourites);
+
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -23,13 +50,28 @@ function NavBar() {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/movies">Movies</NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/login">Log in</NavLink>
-                            </li>
+                            {/* Day6 */}
+                            {!user ? (
+                                <>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="/login">Log in</NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
+                                    </li>
+                                </>
+                            ) : (
+                                <li className="nav-item">
+                                    <button className="btn" onClick={signOutHandler}>Logout</button>
+                                </li>
+                            )}
                         </ul>
-                            <li className="nav-item text-light" id="Fav">
-                                <NavLink className="nav-link" to="/favmovies"><i className="bi bi-suit-heart-fill"></i> <strong>{favouriteMovies.length} </strong></NavLink>
-                            </li>
+                            {/* Day5 */}
+                        <li className="nav-item text-light" id="Fav">
+                            <NavLink className="nav-link" to="/favmovies">
+                                <i className="bi bi-suit-heart-fill"></i> <strong>{favouriteMovies.length} </strong>
+                            </NavLink>
+                        </li>
                     </div>
                 </div>
             </nav>
